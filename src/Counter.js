@@ -15,20 +15,21 @@ const Counter = (props) => {
             <option value="10">10</option>
           </select>
         </div>
-        <button onClick={(e) => props.dispatch(decrement(step))}>-</button>
-        <span>{props.myCount.count}</span>
-        <button onClick={(e) => props.dispatch(increment(step))}>+</button>
+        <button onClick={(e) => props.decrement(step)}>-</button>
+        <span>{props.myCount}</span>
+        <button onClick={(e) => props.increment(step)}>+</button>
       </div>
-      <h3 style={{ color: "red", textAlign: "center" }}>
-        {props.myAlert.alerts}
-      </h3>
+      <h3 style={{ color: "red", textAlign: "center" }}>{props.myAlert}</h3>
     </div>
   );
 };
 const mapStateToProps = (state) => {
   {
-    return { myCount: state.CounterReducer, myAlert: state.AlertReducer };
+    return {
+      myCount: state.CounterReducer.count,
+      myAlert: state.AlertReducer.alerts,
+    };
   }
 };
 
-export default connect(mapStateToProps)(Counter);
+export default connect(mapStateToProps, { decrement, increment })(Counter);

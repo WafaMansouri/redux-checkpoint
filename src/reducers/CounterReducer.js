@@ -2,7 +2,6 @@ import { DECREMENT, INCREMENT } from "../actions/types";
 
 const initialState = {
   count: 0,
-  // alerts: "xx",
 };
 const CounterReducer = (state = initialState, action) => {
   switch (action.type) {
