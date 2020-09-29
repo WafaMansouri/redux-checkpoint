@@ -1,4 +1,4 @@
-import { ALERT_MESSAGE } from "../actions/types";
+import { ALERT_MESSAGE, NO_MESSAGE } from "../actions/types";
 
 const initialState = {
   //   count: 0,
@@ -11,7 +11,7 @@ const AlertReducer = (state = initialState, action) => {
         ...state,
         alerts: `Count should be less than ${action.payload}`,
       };
-    case "NO_MESSAGE":
+    case NO_MESSAGE:
       return { ...state, alerts: "" };
     default:
       return state;

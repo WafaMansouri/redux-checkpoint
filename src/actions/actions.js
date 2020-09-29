@@ -1,4 +1,4 @@
-import { ALERT_MESSAGE, INCREMENT, DECREMENT } from "./types";
+import { ALERT_MESSAGE, INCREMENT, DECREMENT, NO_MESSAGE } from "./types";
 export const decrement = (step) => {
   return {
     type: DECREMENT,
@@ -16,5 +16,10 @@ export const alertMessage = (step) => {
   return {
     type: ALERT_MESSAGE,
     payload: step,
+  };
+};
+export const noMessage = () => {
+  return {
+    type: NO_MESSAGE,
   };
 };

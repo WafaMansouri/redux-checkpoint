@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers";
 import { createStore, applyMiddleware, compose } from "redux";
-import { alertMessage } from "./actions/actions";
+import { alertMessage, noMessage } from "./actions/actions";
 
 const logger = (store) => (next) => (action) => {
   console.log("dispatching", action);
@@ -26,9 +26,19 @@ const alerts = (store) => (next) => (action) => {
     store.getState().CounterReducer.count >= 100
   ) {
     store.dispatch(alertMessage(100));
-  } else {
+  } else if (
+    action.payload === 5 &&
+    store.getState().CounterReducer.count <= 20
+  ) {
+    store.dispatch({ type: "NO_MESSAGE" });
     next(action);
-  }
+  } else if (
+    action.payload === 10 &&
+    store.getState().CounterReducer.count <= 100
+  ) {
+    store.dispatch(noMessage());
+    next(action);
+  } else next(action);
 };
 const store = createStore(
   rootReducer,
